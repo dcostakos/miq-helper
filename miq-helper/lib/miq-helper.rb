@@ -286,7 +286,6 @@ class MiqHelper
       if all_tags
         next unless all_tags.include?("#{start_string}/#{tenant.name}")
       end
-ex
       log(:info, "Tenant #{tenant.name} is in the tag list and on the selected system")
 
       if ext_mgt_system
