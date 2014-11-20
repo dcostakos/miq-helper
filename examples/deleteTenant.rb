@@ -12,7 +12,7 @@ begin
 
   service = @hlp.get_vmdb_object
 
-  mid = mid = service.custom_get("MID")
+  mid = service.custom_get("MID")
   tenant_id = service.custom_get("TENANT_ID")
 
   raise "MID is nil from service attributes, cannot continue" if mid.nil?
