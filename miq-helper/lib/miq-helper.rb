@@ -123,15 +123,18 @@ class MiqHelper
       return Object::const_get("AWS").const_get("#{type}").new()
   end
 
-  def get_fog_object(ext_mgt_system, type="Compute", tenant="admin", auth_token=nil, verify_peer=false)
+  def get_fog_object(ext_mgt_system, type="Compute", tenant="admin", auth_token=nil, verify_peer=false, encrypted=false)
     require 'fog'
+    protocol = "http"
+    protocol = "https" if encrypted
     begin
       return Object::const_get("Fog").const_get("#{type}").new({
         :provider => "OpenStack",
         :openstack_api_key => ext_mgt_system.authentication_password,
         :openstack_username => ext_mgt_system.authentication_userid,
-        :openstack_auth_url => "http://#{ext_mgt_system[:hostname]}:#{ext_mgt_system[:port]}/v2.0/tokens",
+        :openstack_auth_url => "#{protocol}://#{ext_mgt_system[:hostname]}:#{ext_mgt_system[:port]}/v2.0/tokens",
         :openstack_auth_token => auth_token,
+        :connection_options => { :ssl_verify_peer => verify_peer },
         :openstack_tenant => tenant
         })
     rescue => loginerr
