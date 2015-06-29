@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module MiqHlp::Common - RDoc Documentation</title>
+
+<link href="../fonts.css" rel="stylesheet">
+<link href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/navigation.js"></script>
+<script src="../js/search_index.js"></script>
+<script src="../js/search.js"></script>
+<script src="../js/searcher.js"></script>
+<script src="../js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-call_rhevm">#call_rhevm</a>
+    
+    <li ><a href="#method-i-default_dropdown_setup">#default_dropdown_setup</a>
+    
+    <li ><a href="#method-i-get_auth_token">#get_auth_token</a>
+    
+    <li ><a href="#method-i-get_aws_object">#get_aws_object</a>
+    
+    <li ><a href="#method-i-get_fog_object">#get_fog_object</a>
+    
+    <li ><a href="#method-i-get_management_url">#get_management_url</a>
+    
+    <li ><a href="#method-i-get_vcenter_savon_obj">#get_vcenter_savon_obj</a>
+    
+    <li ><a href="#method-i-get_vm_from_evm_root">#get_vm_from_evm_root</a>
+    
+    <li ><a href="#method-i-get_vmdb_object">#get_vmdb_object</a>
+    
+    <li ><a href="#method-i-log">#log</a>
+    
+    <li ><a href="#method-i-log_err">#log_err</a>
+    
+    <li ><a href="#method-i-process_tags">#process_tags</a>
+    
+    <li ><a href="#method-i-retry_method">#retry_method</a>
+    
+    <li ><a href="#method-i-run_linux_admin">#run_linux_admin</a>
+    
+    <li ><a href="#method-i-vcenter_logout">#vcenter_logout</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-MiqHlp::Common">
+  <h1 id="module-MiqHlp::Common" class="module">
+    module MiqHlp::Common
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-call_rhevm" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">call_rhevm</span><span
+            class="method-args">(ext_mgt_system, uri, type=:get, payload=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Generic wrapper around call to RHEVM</pre>
+
+<p>@example</p>
+
+<pre>response = MiqHlp.call_rhevm(mgt_system, &quot;/api/clusters/#{cluster_id}/affinitygroups&quot;, :post, new_affinity_group_payload)</pre>
+
+<p>@param [:ems_redhat] RHEV management System @param [String] The URI part of
+the URL to send the request to @param [String] The type of request (:get,
+:post, :put, :delete) @param [hash] The Hash Payload of the request</p>
+          
+          
+
+          
+          <div class="method-source-code" id="call_rhevm-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/common.rb, line 299</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">call_rhevm</span>(<span class="ruby-identifier">ext_mgt_system</span>, <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">type</span>=<span class="ruby-value">:get</span>, <span class="ruby-identifier">payload</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;rest-client&#39;</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;json&#39;</span>
+
+  <span class="ruby-identifier">params</span> = {
+    <span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span>,
+    <span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ext_mgt_system</span>.<span class="ruby-identifier">authentication_userid</span>,
+    <span class="ruby-value">:password</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ext_mgt_system</span>.<span class="ruby-identifier">authentication_password</span>,
+    <span class="ruby-value">:url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;https://#{ext_mgt_system[:hostname]}#{uri}&quot;</span>,
+    <span class="ruby-value">:headers</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:accept</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:json</span>, <span class="ruby-value">:content_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:json</span> }
+  }
+
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:payload</span>] = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">payload</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">payload</span>.<span class="ruby-identifier">nil?</span>
+
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;[call_rhevm] Calling rhevm with #{params.inspect}&quot;</span>)
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">response</span> = <span class="ruby-constant">RestClient</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>).<span class="ruby-identifier">execute</span>
+  <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">rheverr</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;Error calling RHEV #{rheverr.response}&quot;</span>)
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;#{rheverr.backtrace.join(&quot;\n&quot;)}&quot;</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value">:delete</span>
+    <span class="ruby-keyword">return</span> {}
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-default_dropdown_setup" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_dropdown_setup</span><span
+            class="method-args">(hash, sort_by="description", sort_order="ascending", data_type="string", required="true", default_value=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Convenience method for setting up default dropdown list</p>
+
+<p>@example</p>
+
+<pre>default_dropdown_setup(value_hash)</pre>
+
+<p>@param [Hash] The id/value set of key/value pairs for the dynamic dropdown
+list @param [String] The field to sort the hash by (default is
+“description”) @param [String] The sort order (<a
+href="default">ascending</a> or descending) @param [String] data_type of
+the hash values, default is string @param [String] whether the value is
+required to be set in the dialog (defaults to true) @param [Object] the
+default value for the array</p>
+          
+          
+
+          
+          <div class="method-source-code" id="default_dropdown_setup-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/common.rb, line 138</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">default_dropdown_setup</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">sort_by</span>=<span class="ruby-string">&quot;description&quot;</span>, <span class="ruby-identifier">sort_order</span>=<span class="ruby-string">&quot;ascending&quot;</span>, <span class="ruby-identifier">data_type</span>=<span class="ruby-string">&quot;string&quot;</span>, <span class="ruby-identifier">required</span>=<span class="ruby-string">&quot;true&quot;</span>, <span class="ruby-identifier">default_value</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;Nil Value Hash Sent to default_dropdown_setup&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">object</span>[<span class="ruby-string">&quot;sort_by&quot;</span>]       = <span class="ruby-identifier">sort_by</span>
+  <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">object</span>[<span class="ruby-string">&quot;sort_order&quot;</span>]    = <span class="ruby-identifier">sort_order</span>
+  <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">object</span>[<span class="ruby-string">&quot;data_type&quot;</span>]     = <span class="ruby-identifier">data_type</span>
+  <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">object</span>[<span class="ruby-string">&quot;required&quot;</span>]      = <span class="ruby-identifier">required</span>
+  <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">object</span>[<span class="ruby-string">&quot;values&quot;</span>]        = <span class="ruby-identifier">hash</span>
+  <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">object</span>[<span class="ruby-string">&quot;default_value&quot;</span>] = <span class="ruby-identifier">default_value</span> 
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Set dropdown has values to #{hash.inspect}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_auth_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_auth_token</span><span
+            class="method-args">(conn)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get a keystone auth token from a connection object @example</p>
+
+<pre>fog = MiqHlp.get_fog_object(vm.ext_mangaement_system, &quot;Database&quot;)
+auth_token = MiqHlp.get_auth_token(fog)
+url = MiqHlp.get_management_url(fog)</pre>
+
+<p>@param [Fog::Connection] A Fog OpenStack connection @return [String] The
+current auth token</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_auth_token-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/common.rb, line 210</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_auth_token</span>(<span class="ruby-identifier">conn</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">auth_token</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&quot;auth_token&quot;</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-value">:@auth_token</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_aws_object" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_aws_object</span><span
+            class="method-args">(ext_mgt_system, type="EC2")</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get an AWS object from an ext_management_system object</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_aws_object-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/common.rb, line 152</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_aws_object</span>(<span class="ruby-identifier">ext_mgt_system</span>, <span class="ruby-identifier">type</span>=<span class="ruby-string">&quot;EC2&quot;</span>)
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;aws-sdk&#39;</span>
+  <span class="ruby-constant">AWS</span>.<span class="ruby-identifier">config</span>(
+    <span class="ruby-value">:access_key_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ext_mgt_system</span>.<span class="ruby-identifier">authentication_userid</span>,
+    <span class="ruby-value">:secret_access_key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ext_mgt_system</span>.<span class="ruby-identifier">authentication_password</span>,
+    <span class="ruby-value">:region</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ext_mgt_system</span>.<span class="ruby-identifier">provider_region</span>
+    )
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">Object</span><span class="ruby-operator">::</span><span class="ruby-identifier">const_get</span>(<span class="ruby-string">&quot;AWS&quot;</span>).<span class="ruby-identifier">const_get</span>(<span class="ruby-node">&quot;#{type}&quot;</span>).<span class="ruby-identifier">new</span>()
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_fog_object" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_fog_object</span><span
+            class="method-args">(ext_mgt_system, type="Compute", tenant="admin", auth_token=nil, encrypted=false, verify_peer=false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get a Fog Object from a ext_management system</p>
+
+<p>@example</p>
+
+<pre>ext_management_system = vm.ext_management_system
+conn = get_fog_object(ext_mangagement_system, &quot;Network&quot;, &quot;tenant&quot;)</pre>
+
+<p>@param [ems_openstack] A MIQ ems_openstack object @param [String] The type
+of service to retrieve that is supported by fog.  ie: “Orchestration” ==
+“Heat”, defaault = “Compute” @param [String] The tenant to connect to
+@param [String] The keystone authentication token to reuse @param [Boolean]
+Is encrypted?  NOTE: this method will retry itself it it sees an encrypted
+connectin and encrypted == false @param [Boolean] verify_peer: by default,
+let&#39;s not do any peer verification @return Fog object of type
+“Fog::#{type}”</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_fog_object-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/common.rb, line 176</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_fog_object</span>(<span class="ruby-identifier">ext_mgt_system</span>, <span class="ruby-identifier">type</span>=<span class="ruby-string">&quot;Compute&quot;</span>, <span class="ruby-identifier">tenant</span>=<span class="ruby-string">&quot;admin&quot;</span>, <span class="ruby-identifier">auth_token</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">encrypted</span>=<span class="ruby-keyword">false</span>, <span class="ruby-identifier">verify_peer</span>=<span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">proto</span> = <span class="ruby-string">&quot;http&quot;</span>
+  <span class="ruby-identifier">proto</span> = <span class="ruby-string">&quot;https&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">encrypted</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;fog&#39;</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">Object</span><span class="ruby-operator">::</span><span class="ruby-identifier">const_get</span>(<span class="ruby-string">&quot;Fog&quot;</span>).<span class="ruby-identifier">const_get</span>(<span class="ruby-node">&quot;#{type}&quot;</span>).<span class="ruby-identifier">new</span>({
+      <span class="ruby-value">:provider</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;OpenStack&quot;</span>,
+      <span class="ruby-value">:openstack_api_key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ext_mgt_system</span>.<span class="ruby-identifier">authentication_password</span>,
+      <span class="ruby-value">:openstack_username</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ext_mgt_system</span>.<span class="ruby-identifier">authentication_userid</span>,
+      <span class="ruby-value">:openstack_auth_url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{proto}://#{ext_mgt_system[:hostname]}:#{ext_mgt_system[:port]}/v2.0/tokens&quot;</span>,
+      <span class="ruby-value">:openstack_auth_token</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">auth_token</span>,
+      <span class="ruby-value">:connection_options</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:ssl_verify_peer</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">verify_peer</span>, <span class="ruby-value">:ssl_version</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:TLSv1</span> },
+      <span class="ruby-value">:openstack_tenant</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">tenant</span>
+      })
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Excon</span><span class="ruby-operator">::</span><span class="ruby-constant">Errors</span><span class="ruby-operator">::</span><span class="ruby-constant">SocketError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sockerr</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">sockerr</span>.<span class="ruby-identifier">message</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;end of file reached (EOFError)&quot;</span>)
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;Looks like potentially an ssl connection due to error: #{sockerr}&quot;</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">get_fog_object</span>(<span class="ruby-identifier">ext_mgt_system</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">tenant</span>, <span class="ruby-identifier">auth_token</span>, <span class="ruby-keyword">true</span>, <span class="ruby-identifier">verify_peer</span>)
+  <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">loginerr</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;Error logging [#{ext_mgt_system}, #{type}, #{tenant}, #{auth_token rescue &quot;NO TOKEN&quot;}]&quot;</span>)
+    <span class="ruby-identifier">log_err</span>(<span class="ruby-identifier">loginerr</span>)
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-string">&quot;Returning nil&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_management_url" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_management_url</span><span
+            class="method-args">(conn)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the management URL of the service a fog object is speaking to Useful if
+you need to make REST calls to a service that fog does not yet support
+@example</p>
+
+<pre>fog = MiqHlp.get_fog_object(vm.ext_mangaement_system, &quot;Database&quot;)
+auth_token = MiqHlp.get_auth_token(fog)
+url = MiqHlp.get_management_url(fog)</pre>
+
+<p>@param [Fog::Connect] A fog OpenStack connection @return [String] The URL
+this fog object is connected to</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_management_url-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/common.rb, line 224</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_management_url</span>(<span class="ruby-identifier">conn</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-value">:@openstack_management_url</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_vcenter_savon_obj" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_vcenter_savon_obj</span><span
+            class="method-args">(vcenter_mgt_system)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get a Ruby Savon client from an ext management system @example</p>
+
+<pre>client = nil
+begin
+  client = MiqHlp.get_vcenter_savon_obj(vm.ext_management_system)
+  ...
+ensure
+  MiqHlp.vcenter_logout(client) unless client.nil?
+end</pre>
+
+<p>@param [:ems_vmware] A VCenter Management System @return [Savon::Client] A
+Savon SOAP client</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_vcenter_savon_obj-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/common.rb, line 240</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_vcenter_savon_obj</span>(<span class="ruby-identifier">vcenter_mgt_system</span>)
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;savon&#39;</span>
+  <span class="ruby-identifier">client</span> = <span class="ruby-constant">Savon</span>.<span class="ruby-identifier">client</span>(
+    <span class="ruby-value">:wsdl</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;https://#{vcenter_mgt_system.ipaddress}/sdk/vim.wsdl&quot;</span>,
+    <span class="ruby-value">:endpoint</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;https://#{servername}/sdk/&quot;</span>,
+    <span class="ruby-value">:ssl_verify_mode</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:none</span>,
+    <span class="ruby-value">:ssl_version</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:TLSv1</span>,
+    <span class="ruby-value">:log_level</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:info</span>,
+    <span class="ruby-value">:log</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+    <span class="ruby-value">:raise_errors</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+  )
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">result</span> = <span class="ruby-identifier">client</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">:login</span>) <span class="ruby-keyword">do</span> 
+      <span class="ruby-identifier">message</span>(
+        <span class="ruby-value">:_this</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;SessionManager&quot;</span>,
+        <span class="ruby-value">:userName</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">vcenter_mgt_system</span>.<span class="ruby-identifier">authentication_userid</span>,
+        <span class="ruby-value">:password</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">vcenter_mgt_system</span>.<span class="ruby-identifier">authentication_password</span>,
+        )
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">client</span>.<span class="ruby-identifier">globals</span>.<span class="ruby-identifier">headers</span>({<span class="ruby-string">&quot;Cookie&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">http</span>.<span class="ruby-identifier">headers</span>[<span class="ruby-string">&quot;Set-Cookie&quot;</span>]})
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">client</span>
+  <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">loginerr</span>
+    <span class="ruby-identifier">log_err</span>(<span class="ruby-identifier">loginerr</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_vm_from_evm_root" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_vm_from_evm_root</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>convenience method to get a VM objet from $evm.root</p>
+
+<p>@example</p>
+
+<pre>vm = MiqHlp.get_vm_from_evm_root</pre>
+
+<p>@return [VM]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_vm_from_evm_root-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/common.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_vm_from_evm_root</span>()
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;vmdb_object_type&#39;</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;miq_provision&#39;</span>
+    <span class="ruby-identifier">prov</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;miq_provision&#39;</span>]
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Provision:&lt;#{prov.id}&gt; Request:&lt;#{prov.miq_provision_request.id}&gt; Type:&lt;#{prov.type}&gt;&quot;</span>)
+    <span class="ruby-identifier">vm</span> = <span class="ruby-identifier">prov</span>.<span class="ruby-identifier">vm</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Found VM from provision object: #{vm.inspect}&quot;</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">prov</span>.<span class="ruby-identifier">vm</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;vm&#39;</span>
+    <span class="ruby-identifier">vm</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;vm&#39;</span>]
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;VM: #{vm.inspect}&quot;</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">vm</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;Invalid $evm.root[&#39;vmdb_object_type&#39;]:&lt;#{$evm.root[&#39;vmdb_object_type&#39;]}&gt;. Skipping method.&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_vmdb_object" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_vmdb_object</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get a VMDB Object from $evm.root</p>
+
+<p>@example</p>
+
+<pre>miq_prov = MiqHlp.get_vmdb_object()</pre>
+
+<p>@return Drbd::Object</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_vmdb_object-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/common.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_vmdb_object</span>()
+  <span class="ruby-identifier">object</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-node">&quot;#{$evm.root[&#39;vmdb_object_type&#39;]}&quot;</span>]
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Got object: #{object.class} #{object}&quot;</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">object</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-log" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">log</span><span
+            class="method-args">(level, message, update_message=false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Log a message with using $evm.log and update vmdb_object property
+message if requested with the same note</pre>
+
+<p>@example Simple caill to log</p>
+
+<pre>MiqHlp.log(:info, &quot;This is a message&quot;)</pre>
+
+<p>@example Example basic call to log but also update the
+service_template_provision_task message</p>
+
+<pre>MiqHlp.log(:info, &quot;Waiting for VM to Become Available&quot;, true)</pre>
+
+<p>@param [String] The level at which to log ie :info, :debug, :warn @param
+[String] The message to log @param [Boolean] Should I also update message
+property? (default false)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="log-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/common.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">log</span>(<span class="ruby-identifier">level</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">update_message</span>=<span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">log</span>(<span class="ruby-identifier">level</span>, <span class="ruby-node">&quot;#{caller[0]} - #{message}&quot;</span>)
+  <span class="ruby-identifier">get_vmdb_object</span>.<span class="ruby-identifier">message</span> = <span class="ruby-node">&quot;#{message}&quot;</span> <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">update_message</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-log_err" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">log_err</span><span
+            class="method-args">(err, update_message=false, update_reason=false, finish=false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Useful wrapper around <a href="Common.html#method-i-log">log</a> to log
+error messages in a standard way</p>
+
+<p>@example</p>
+
+<pre>MiqHlp.log_err(exception)</pre>
+
+<p>@example</p>
+
+<pre>MiqHlp.log_err(exception, true, true, true)</pre>
+
+<p>@param [StandardError] The error to log @param [Boolean] Should I update
+object message property? @param [Boolean] Should I update $<a
+href="'ae_reason'">evm.root</a>? @param [Boolean] Should I also call finish
+on the vmdb object?</p>
+          
+          
+
+          
+          <div class="method-source-code" id="log_err-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/common.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">log_err</span>(<span class="ruby-identifier">err</span>, <span class="ruby-identifier">update_message</span>=<span class="ruby-keyword">false</span>, <span class="ruby-identifier">update_reason</span>=<span class="ruby-keyword">false</span>, <span class="ruby-identifier">finish</span>=<span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;#{err.class} [#{err}]&quot;</span>, <span class="ruby-identifier">update_message</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;#{err.backtrace.join(&quot;\n&quot;)}&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">update_reason</span>
+    <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;ae_result&#39;</span>] = <span class="ruby-string">&#39;error&#39;</span>
+    <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;ae_reason&#39;</span>] = <span class="ruby-node">&quot;#{err.class} [#{err}]&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">get_vmdb_object</span>.<span class="ruby-identifier">finished</span>(<span class="ruby-node">&quot;#{err.class} [#{err}]&quot;</span>) <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">finish</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-process_tags" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">process_tags</span><span
+            class="method-args">( category, category_description, single_value, tag, tag_description )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Method to create a new tag</p>
+
+<p>@example</p>
+
+<pre>tag_info = process_tags(&quot;new_category&quot;, &quot;My New Category&quot;, false, &quot;new_value&quot;, &quot;My New Value&quot;)
+vm.tag_assign(&quot;#{tag_info.first}/#{tag_info.last&quot;)</pre>
+
+<p>@param [String] The short category name for the tag @param [String] The
+long human-readable category description for the tag @param [Boolean]
+Whether the category is single value cateogry or may support multiple
+values @param [String] The short tag name for the value of this tag @param
+[String] The long human readable tag value @return [Array] An array
+containing the normalized short category and tag name</p>
+          
+          
+
+          
+          <div class="method-source-code" id="process_tags-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/common.rb, line 108</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">process_tags</span>( <span class="ruby-identifier">category</span>, <span class="ruby-identifier">category_description</span>, <span class="ruby-identifier">single_value</span>, <span class="ruby-identifier">tag</span>, <span class="ruby-identifier">tag_description</span> )
+  <span class="ruby-comment"># Convert to lower case and replace all non-word characters with underscores</span>
+  <span class="ruby-identifier">category_name</span> = <span class="ruby-identifier">category</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\W/</span>, <span class="ruby-string">&#39;_&#39;</span>)
+  <span class="ruby-identifier">tag_name</span> = <span class="ruby-identifier">tag</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\W/</span>, <span class="ruby-string">&#39;_&#39;</span>)
+  <span class="ruby-identifier">tag_name</span> = <span class="ruby-identifier">tag_name</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/:/</span>, <span class="ruby-string">&#39;_&#39;</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Converted category name:&lt;#{category_name}&gt; Converted tag name: &lt;#{tag_name}&gt;&quot;</span>)
+  <span class="ruby-comment"># if the category exists else create it</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-string">&#39;category_exists?&#39;</span>, <span class="ruby-identifier">category_name</span>)
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Category &lt;#{category_name}&gt; doesn&#39;t exist, creating category&quot;</span>)
+    <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-string">&#39;category_create&#39;</span>, <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">category_name</span>, <span class="ruby-value">:single_value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">single_value</span>, <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{category_description}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># if the tag exists else create it</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-string">&#39;tag_exists?&#39;</span>, <span class="ruby-identifier">category_name</span>, <span class="ruby-identifier">tag_name</span>)
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Adding new tag &lt;#{tag_name}&gt; description &lt;#{tag_description}&gt; in Category &lt;#{category_name}&gt;&quot;</span>)
+    <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-string">&#39;tag_create&#39;</span>, <span class="ruby-identifier">category_name</span>, <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">tag_name</span>, <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{tag_description}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> [ <span class="ruby-identifier">category_name</span>, <span class="ruby-identifier">tag_name</span> ]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-retry_method" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">retry_method</span><span
+            class="method-args">(retry_time=1.minute)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Standard retry method logic</p>
+
+<p>@example</p>
+
+<pre>MiqHlp.retry_method</pre>
+
+<p>@example</p>
+
+<pre>MiqHlp.retry_method(&quot;15.seconds&quot;)</pre>
+
+<p>@param [String] The amount of time to sleep after retry</p>
+          
+          
+
+          
+          <div class="method-source-code" id="retry_method-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/common.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">retry_method</span>(<span class="ruby-identifier">retry_time</span>=<span class="ruby-value">1</span>.<span class="ruby-identifier">minute</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Retrying in #{retry_time} seconds&quot;</span>)
+  <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;ae_result&#39;</span>]         = <span class="ruby-string">&#39;retry&#39;</span>
+  <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;ae_retry_interval&#39;</span>] = <span class="ruby-identifier">retry_time</span>
+  <span class="ruby-identifier">exit</span> <span class="ruby-constant">MIQ_OK</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-run_linux_admin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run_linux_admin</span><span
+            class="method-args">(cmd, timeout=30)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Run a shell command (on whatever the current automation worker node is)</pre>
+
+<p>@example</p>
+
+<pre>cmd = &quot;knife bootstrap -x username -p password hostname&quot;
+result = run_linux_admin(cmd, 60)</pre>
+
+<p>@param [String] The command to run @param [Integer] the timeout value for
+the command (default to 30) @return [AwesomeSpawn::CommandResult]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="run_linux_admin-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/common.rb, line 338</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">run_linux_admin</span>(<span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">timeout</span>=<span class="ruby-value">30</span>)
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;linux_admin&#39;</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;timeout&#39;</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-constant">Timeout</span><span class="ruby-operator">::</span><span class="ruby-identifier">timeout</span>(<span class="ruby-identifier">timeout</span>) {
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Executing #{cmd} with timeout of #{timeout} seconds&quot;</span>)
+      <span class="ruby-identifier">result</span> = <span class="ruby-constant">LinuxAdmin</span>.<span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;--&gt; Inspecting output: #{result.output.inspect}&quot;</span>)
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;--&gt; Inspecting error: #{result.error.inspect}&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">error</span>.<span class="ruby-identifier">blank?</span> 
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;--&gt; Inspecting exit_status: #{result.exit_status.inspect}&quot;</span>)
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">result</span>
+    }
+  <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">timeout</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;Error executing &#39;#{cmd}&#39;&quot;</span>)
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;&#39;#{timeout.class}&#39; &#39;#{timeout}&#39; \n#{timeout.backtrace.join(&quot;\n&quot;)}&quot;</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-vcenter_logout" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">vcenter_logout</span><span
+            class="method-args">(client)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Clean up a vcenter SOAP session</pre>
+
+<p>@example</p>
+
+<pre>@example
+ client = nil
+ begin
+   client = MiqHlp.get_vcenter_savon_obj(vm.ext_management_system)
+   ...
+ ensure
+   MiqHlp.vcenter_logout(client) unless client.nil?
+ end</pre>
+
+<p>@param [Savon::Client] the savon client to logout</p>
+          
+          
+
+          
+          <div class="method-source-code" id="vcenter_logout-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/common.rb, line 279</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">vcenter_logout</span>(<span class="ruby-identifier">client</span>)
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;savon&#39;</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">client</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">:logout</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">message</span>(<span class="ruby-value">:_this</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;SessionManager&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">logouterr</span>
+    <span class="ruby-identifier">log_err</span>(<span class="ruby-identifier">logouterr</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

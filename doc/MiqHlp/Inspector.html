@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module MiqHlp::Inspector - RDoc Documentation</title>
+
+<link href="../fonts.css" rel="stylesheet">
+<link href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/navigation.js"></script>
+<script src="../js/search_index.js"></script>
+<script src="../js/search.js"></script>
+<script src="../js/searcher.js"></script>
+<script src="../js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-dumpAssociations">#dumpAssociations</a>
+    
+    <li ><a href="#method-i-dumpAttributes">#dumpAttributes</a>
+    
+    <li ><a href="#method-i-dumpCurrentObject">#dumpCurrentObject</a>
+    
+    <li ><a href="#method-i-dumpEMSCluster">#dumpEMSCluster</a>
+    
+    <li ><a href="#method-i-dumpEmsCluster">#dumpEmsCluster</a>
+    
+    <li ><a href="#method-i-dumpExtManagementSystem">#dumpExtManagementSystem</a>
+    
+    <li ><a href="#method-i-dumpHost">#dumpHost</a>
+    
+    <li ><a href="#method-i-dumpMIQGroup">#dumpMIQGroup</a>
+    
+    <li ><a href="#method-i-dumpMIQServer">#dumpMIQServer</a>
+    
+    <li ><a href="#method-i-dumpMiqGroup">#dumpMiqGroup</a>
+    
+    <li ><a href="#method-i-dumpMiqServer">#dumpMiqServer</a>
+    
+    <li ><a href="#method-i-dumpRoot">#dumpRoot</a>
+    
+    <li ><a href="#method-i-dumpService">#dumpService</a>
+    
+    <li ><a href="#method-i-dumpServiceTemplate">#dumpServiceTemplate</a>
+    
+    <li ><a href="#method-i-dumpStorage">#dumpStorage</a>
+    
+    <li ><a href="#method-i-dumpTags">#dumpTags</a>
+    
+    <li ><a href="#method-i-dumpUser">#dumpUser</a>
+    
+    <li ><a href="#method-i-dumpVirtualColumns">#dumpVirtualColumns</a>
+    
+    <li ><a href="#method-i-dumpVm">#dumpVm</a>
+    
+    <li ><a href="#method-i-dump_associations">#dump_associations</a>
+    
+    <li ><a href="#method-i-dump_attributes">#dump_attributes</a>
+    
+    <li ><a href="#method-i-dump_current_object">#dump_current_object</a>
+    
+    <li ><a href="#method-i-dump_ems_cluster">#dump_ems_cluster</a>
+    
+    <li ><a href="#method-i-dump_ext_management_system">#dump_ext_management_system</a>
+    
+    <li ><a href="#method-i-dump_host">#dump_host</a>
+    
+    <li ><a href="#method-i-dump_miq_group">#dump_miq_group</a>
+    
+    <li ><a href="#method-i-dump_miq_server">#dump_miq_server</a>
+    
+    <li ><a href="#method-i-dump_root">#dump_root</a>
+    
+    <li ><a href="#method-i-dump_service">#dump_service</a>
+    
+    <li ><a href="#method-i-dump_service_template">#dump_service_template</a>
+    
+    <li ><a href="#method-i-dump_storage">#dump_storage</a>
+    
+    <li ><a href="#method-i-dump_tags">#dump_tags</a>
+    
+    <li ><a href="#method-i-dump_user">#dump_user</a>
+    
+    <li ><a href="#method-i-dump_virtual_columns">#dump_virtual_columns</a>
+    
+    <li ><a href="#method-i-dump_vm">#dump_vm</a>
+    
+    <li ><a href="#method-i-inspectMe">#inspectMe</a>
+    
+    <li ><a href="#method-i-inspect_me">#inspect_me</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-MiqHlp::Inspector">
+  <h1 id="module-MiqHlp::Inspector" class="module">
+    module MiqHlp::Inspector
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-dumpAssociations" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpAssociations</span><span
+            class="method-args">(object_type, object)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_associations">dump_associations</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpAttributes" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpAttributes</span><span
+            class="method-args">(object_type, object)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_attributes">dump_attributes</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpCurrentObject" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpCurrentObject</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_current_object">dump_current_object</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpEMSCluster" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpEMSCluster</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_ems_cluster">dump_ems_cluster</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpEmsCluster" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpEmsCluster</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_ems_cluster">dump_ems_cluster</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpExtManagementSystem" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpExtManagementSystem</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_ext_management_system">dump_ext_management_system</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpHost" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpHost</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_host">dump_host</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpMIQGroup" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpMIQGroup</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_miq_group">dump_miq_group</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpMIQServer" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpMIQServer</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_miq_server">dump_miq_server</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpMiqGroup" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpMiqGroup</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_miq_group">dump_miq_group</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpMiqServer" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpMiqServer</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_miq_server">dump_miq_server</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpRoot" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpRoot</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_root">dump_root</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpService" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpService</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_service">dump_service</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpServiceTemplate" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpServiceTemplate</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_service_template">dump_service_template</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpStorage" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpStorage</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_storage">dump_storage</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpTags" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpTags</span><span
+            class="method-args">(object_type, object)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_tags">dump_tags</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpUser" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpUser</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_user">dump_user</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpVirtualColumns" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpVirtualColumns</span><span
+            class="method-args">(object_type, object)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_virtual_columns">dump_virtual_columns</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dumpVm" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">dumpVm</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-dump_vm">dump_vm</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-dump_associations" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_associations</span><span
+            class="method-args">(object_type, object)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_associations-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_associations</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Begin #{object_type}.associations&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;associations&#39;</span>)
+    <span class="ruby-identifier">object</span>.<span class="ruby-identifier">associations</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">assc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object.name rescue object.description rescue nil} - Association: #{assc}&quot;</span>) }
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">object</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">obj</span><span class="ruby-operator">|</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">associations</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">assc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object.name rescue object.description rescue nil} - Association: #{assc}&quot;</span>) } }
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;End #{object_type}.associations&quot;</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-string">&quot;&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpAssociations">dumpAssociations</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_attributes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_attributes</span><span
+            class="method-args">(object_type, object)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_attributes-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Begin #{object_type}.attributes&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;attributes&#39;</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;user&#39;</span>].<span class="ruby-identifier">current_group</span>.<span class="ruby-identifier">description</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;EvmGroup-super_administrator&#39;</span>
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object.name} - Attribute: &#39;authentication_userid&#39; = #{object.authentication_userid.inspect}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;authentication_userid&#39;</span>)
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object.name} - Attribute: &#39;authentication_password_encrypted&#39; = #{object.authentication_password_encrypted.inspect}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;authentication_password_encrypted&#39;</span>)
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object.name} - Attribute: &#39;authentication_password&#39; = #{object.authentication_password.inspect}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;authentication_password&#39;</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">object</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object.name rescue object.description rescue nil} - Attribute: #{k.inspect} = #{v.inspect}&quot;</span>) }
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;each&#39;</span>)
+    <span class="ruby-identifier">object</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">obj</span><span class="ruby-operator">|</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{obj.name rescue obj.description rescue nil} - Attribute: #{k.inspect} = #{v.inspect}&quot;</span>)}}
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;count&#39;</span>)
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object_type}: #{object.count}&quot;</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">object_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;current_object&#39;</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object.name} - Attribute: &#39;class_name&#39; = #{object.class_name.inspect}&quot;</span>)
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object.name} - Attribute: &#39;current_message&#39; = #{object.current_message.inspect}&quot;</span>)
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object.name} - Attribute: &#39;current_field_name&#39; = #{object.current_field_name.inspect}&quot;</span>)
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object.name} - Attribute: &#39;current_field_type&#39; = #{object.current_field_type.inspect}&quot;</span>)
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object.name} - Attribute: &#39;instance_name&#39; = #{object.instance_name.inspect}&quot;</span>)
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object.name} - Attribute: &#39;namespace&#39; = #{object.namespace.inspect}&quot;</span>)
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object.name} - Attribute: &#39;children&#39; = #{object.children.inspect}&quot;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object_type}: #{object.inspect}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;End #{object_type}.attributes&quot;</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-string">&quot;&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpAttributes">dumpAttributes</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_current_object" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_current_object</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_current_object-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_current_object</span>()
+  <span class="ruby-identifier">object_type</span> = <span class="ruby-string">&#39;current_object&#39;</span>
+  <span class="ruby-identifier">object</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">current_object</span>
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpCurrentObject">dumpCurrentObject</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_ems_cluster" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_ems_cluster</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Cluster Information</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dump_ems_cluster-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 139</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_ems_cluster</span>()
+  <span class="ruby-identifier">object_type</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;vmdb_object_type&#39;</span>]
+  <span class="ruby-identifier">object</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">vmdb</span>(<span class="ruby-string">&#39;ems_cluster&#39;</span>).<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;ems_cluster_id&#39;</span>])
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_associations</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_tags</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_virtual_columns</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.ext_management_system&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">ext_management_system</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;ext_management_system&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.hosts&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hosts</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;hosts&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.default_resource_pool&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">default_resource_pool</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;default_resource_pool&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.parent_folder&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">parent_folder</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;parent_folder&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.vms.count&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">vms</span>.<span class="ruby-identifier">count</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;vms&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.resource_pools&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">resource_pools</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;resource_pools&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpEmsCluster">dumpEmsCluster</a>, <a href="Inspector.html#method-i-dumpEMSCluster">dumpEMSCluster</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_ext_management_system" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_ext_management_system</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Provider Information</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dump_ext_management_system-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 159</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_ext_management_system</span>()
+  <span class="ruby-identifier">object_type</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;vmdb_object_type&#39;</span>]
+  <span class="ruby-identifier">object</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">vmdb</span>(<span class="ruby-string">&#39;ext_management_system&#39;</span>).<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;ext_management_system_id&#39;</span>])
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_associations</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_tags</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_virtual_columns</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.hosts&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hosts</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;hosts&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.ems_folders&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">ems_folders</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;ems_folders&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.cloud_networks&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">cloud_networks</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;cloud_networks&#39;</span>)
+  <span class="ruby-identifier">dump_associations</span>(<span class="ruby-node">&quot;#{object_type}.cloud_networks&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">cloud_networks</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;cloud_networks&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.floating_ips&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">floating_ips</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;floating_ips&#39;</span>)
+  <span class="ruby-identifier">dump_associations</span>(<span class="ruby-node">&quot;#{object_type}.floating_ips&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">floating_ips</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;floating_ips&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.availability_zones&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">availability_zones</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;availability_zones&#39;</span>)
+  <span class="ruby-identifier">dump_associations</span>(<span class="ruby-node">&quot;#{object_type}.availability_zones&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">availability_zones</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;availability_zones&#39;</span>)
+  <span class="ruby-identifier">dump_virtual_columns</span>(<span class="ruby-node">&quot;#{object_type}.availability_zones&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">availability_zones</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;availability_zones&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.flavors&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">flavors</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;flavors&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.key_pairs&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">key_pairs</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;key_pairs&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.security_groups&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">security_groups</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;security_groups&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpExtManagementSystem">dumpExtManagementSystem</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_host" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_host</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Host Information</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dump_host-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 184</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_host</span>()
+  <span class="ruby-identifier">object_type</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;vmdb_object_type&#39;</span>]
+  <span class="ruby-identifier">object</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">vmdb</span>(<span class="ruby-string">&#39;host&#39;</span>).<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;host_id&#39;</span>])
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_associations</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_tags</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_virtual_columns</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.datacenter&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">datacenter</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;datacenter&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.ems_cluster&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">ems_cluster</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;ems_cluster&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.ems_folder&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">ems_folder</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;ems_folder&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.ext_management_system&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">ext_management_system</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;ext_management_system&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.guest_applications&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">guest_applications</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;guest_applications&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.hardware&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hardware</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;hardware&#39;</span>)
+  <span class="ruby-identifier">dump_associations</span>(<span class="ruby-node">&quot;#{object_type}.hardware&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hardware</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;hardware&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.hardware.guest_devices&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hardware</span>.<span class="ruby-identifier">guest_devices</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hardware</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;guest_devices&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.hardware.ports&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hardware</span>.<span class="ruby-identifier">ports</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hardware</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;ports&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.lans&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">lans</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;lans&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.operating_system&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">operating_system</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;operating_system&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.switches&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">switches</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;switches&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.storages&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">storages</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;storages&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.vms.count&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">vms</span>.<span class="ruby-identifier">count</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;vms&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpHost">dumpHost</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_miq_group" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_miq_group</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Group Information</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dump_miq_group-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 124</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_miq_group</span>()
+  <span class="ruby-identifier">object_type</span> = <span class="ruby-string">&#39;miq_group&#39;</span>
+  <span class="ruby-identifier">object</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;user&#39;</span>].<span class="ruby-identifier">current_group</span>
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_associations</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_tags</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_virtual_columns</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.vms.count&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">vms</span>.<span class="ruby-identifier">count</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;vms&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.users.count&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">count</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;users&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpMIQGroup">dumpMIQGroup</a>, <a href="Inspector.html#method-i-dumpMiqGroup">dumpMiqGroup</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_miq_server" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_miq_server</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>CloudForms Server Information</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dump_miq_server-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_miq_server</span>()
+  <span class="ruby-identifier">object_type</span> = <span class="ruby-string">&#39;miq_server&#39;</span>
+  <span class="ruby-identifier">object</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-node">&quot;#{object_type}&quot;</span>]
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_associations</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_virtual_columns</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpMIQServer">dumpMIQServer</a>, <a href="Inspector.html#method-i-dumpMiqServer">dumpMiqServer</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_root" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_root</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_root-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_root</span>()
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-string">&quot;Begin $evm.root.attributes&quot;</span>)
+  <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t Attribute: #{k} = #{v}&quot;</span>)}
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-string">&quot;End $evm.root.attributes&quot;</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-string">&quot;&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpRoot">dumpRoot</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_service" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_service</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Service Information</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dump_service-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 211</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_service</span>()
+  <span class="ruby-identifier">object_type</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;vmdb_object_type&#39;</span>]
+  <span class="ruby-identifier">object</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">vmdb</span>(<span class="ruby-string">&#39;service&#39;</span>).<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;service_id&#39;</span>])
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_associations</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_tags</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_virtual_columns</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.vms.count&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">vms</span>.<span class="ruby-identifier">count</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;vms&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.direct_vms&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">direct_vms</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;direct_vms&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.indirect_vms&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">indirect_vms</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;indirect_vms&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.all_service_children&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">all_service_children</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;all_service_children&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.direct_service_children&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">direct_service_children</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;direct_service_children&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpService">dumpService</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_service_template" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_service_template</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>CatalogItem Information</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dump_service_template-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 229</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_service_template</span>()
+  <span class="ruby-identifier">object_type</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;vmdb_object_type&#39;</span>]
+  <span class="ruby-identifier">object</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">vmdb</span>(<span class="ruby-string">&#39;service_template&#39;</span>).<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;service_template_id&#39;</span>])
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_associations</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_tags</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_virtual_columns</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.service_resources&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">service_resources</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;service_resources&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.service_templates&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">service_templates</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;service_templates&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.services&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">services</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;services&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpServiceTemplate">dumpServiceTemplate</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_storage" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_storage</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Storage Information</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dump_storage-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 245</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_storage</span>()
+  <span class="ruby-identifier">object_type</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;vmdb_object_type&#39;</span>]
+  <span class="ruby-identifier">object</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">vmdb</span>(<span class="ruby-string">&#39;storage&#39;</span>).<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;storage_id&#39;</span>])
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_associations</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_tags</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_virtual_columns</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.ext_management_system&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">ext_management_system</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;ext_management_system&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.hosts.count&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hosts</span>.<span class="ruby-identifier">count</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;hosts&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.unregistered_vms.count&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">unregistered_vms</span>.<span class="ruby-identifier">count</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;unregistered_vms&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.vms.count&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">vms</span>.<span class="ruby-identifier">count</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;vms&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpStorage">dumpStorage</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_tags" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_tags</span><span
+            class="method-args">(object_type, object)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_tags-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_tags</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Begin #{object_type}.tags&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;tags&#39;</span>)
+    <span class="ruby-identifier">object</span>.<span class="ruby-identifier">tags</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tag_element</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">tag_text</span> = <span class="ruby-identifier">tag_element</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;/&#39;</span>)
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object.name rescue object.description rescue nil} - Category: #{tag_text.first.inspect} Tag: #{tag_text.last.inspect}&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">object</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">obj</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">tags</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tag_element</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">tag_text</span> = <span class="ruby-identifier">tag_element</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;/&#39;</span>)
+        <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{obj.name rescue obj.description rescue nil} - Category: #{tag_text.first.inspect} Tag: #{tag_text.last.inspect}&quot;</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;End #{object_type}.tags&quot;</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-string">&quot;&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpTags">dumpTags</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_user" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_user</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>User Information</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dump_user-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 111</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_user</span>()
+  <span class="ruby-identifier">object_type</span> = <span class="ruby-string">&#39;user&#39;</span>
+  <span class="ruby-identifier">object</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-node">&quot;#{object_type}&quot;</span>]
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_associations</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_tags</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_virtual_columns</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.miq_requests.count&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">miq_requests</span>.<span class="ruby-identifier">count</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;miq_requests&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpUser">dumpUser</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_virtual_columns" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_virtual_columns</span><span
+            class="method-args">(object_type, object)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_virtual_columns-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_virtual_columns</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Begin #{object_type}.virtual_column_names&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;virtual_column_names&#39;</span>)
+    <span class="ruby-identifier">object</span>.<span class="ruby-identifier">virtual_column_names</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">vcn</span><span class="ruby-operator">|</span> <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{object.name rescue object.description rescue nil} - Virtual Column: #{vcn} = #{object.send(vcn).inspect}&quot;</span>) }
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">object</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">obj</span><span class="ruby-operator">|</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">virtual_column_names</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">vcn</span><span class="ruby-operator">|</span> <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;\t #{obj.name rescue obj.description rescue nil} - Virtual Column: #{vcn} = #{obj.send(vcn).inspect}&quot;</span>) } }
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;End #{object_type}.virtual_column_names&quot;</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-string">&quot;&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpVirtualColumns">dumpVirtualColumns</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_vm" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_vm</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>VM Information</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dump_vm-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 262</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_vm</span>()
+  <span class="ruby-identifier">object_type</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;vmdb_object_type&#39;</span>]
+  <span class="ruby-identifier">object</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">vmdb</span>(<span class="ruby-string">&#39;vm&#39;</span>).<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;vm_id&#39;</span>])
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_associations</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_tags</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+  <span class="ruby-identifier">dump_virtual_columns</span>(<span class="ruby-identifier">object_type</span>, <span class="ruby-identifier">object</span>)
+
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.datacenter&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">datacenter</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;datacenter&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.direct_service&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">direct_service</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;direct_service&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.ems_cluster&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">ems_cluster</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;ems_cluster&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.ems_folder&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">ems_folder</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;ems_folder&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.ext_management_system&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">ext_management_system</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;ext_management_system&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.guest_applications&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">guest_applications</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;guest_applications&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.hardware&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hardware</span>)
+  <span class="ruby-identifier">dump_associations</span>(<span class="ruby-node">&quot;#{object_type}.hardware&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hardware</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.hardware.nics&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hardware</span>.<span class="ruby-identifier">nics</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hardware</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;nics&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.hardware.ports&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hardware</span>.<span class="ruby-identifier">ports</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hardware</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;ports&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.hardware.storage_adapters&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hardware</span>.<span class="ruby-identifier">storage_adapters</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">hardware</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;storage_adapters&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.host&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">host</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;host&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.miq_provision&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">miq_provision</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;miq_provision&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.operating_system&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">operating_system</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;operating_system&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.owner&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">owner</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;owner&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.resource_pool&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">resource_pool</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;resource_pool&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.service&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">service</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;service&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.snapshots&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">snapshots</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;snapshots&#39;</span>)
+  <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-node">&quot;#{object_type}.storage&quot;</span>, <span class="ruby-identifier">object</span>.<span class="ruby-identifier">storage</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">&#39;storage&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-dumpVm">dumpVm</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inspectMe" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">inspectMe</span><span
+            class="method-args">()</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Inspector.html#method-i-inspect_me">inspect_me</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-inspect_me" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">inspect_me</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="inspect_me-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/inspector.rb, line 293</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">inspect_me</span>()
+  <span class="ruby-comment"># dump root</span>
+  <span class="ruby-identifier">dump_root</span>()
+
+  <span class="ruby-comment"># dump_current_object</span>
+  <span class="ruby-identifier">dump_current_object</span>()
+
+  <span class="ruby-comment"># dump miq_server</span>
+  <span class="ruby-identifier">dump_miq_server</span>()
+
+  <span class="ruby-comment"># dump user</span>
+  <span class="ruby-identifier">dump_user</span>()
+
+  <span class="ruby-comment"># dump miq_group</span>
+  <span class="ruby-identifier">dump_miq_group</span>()
+
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;vmdb_object_type&#39;</span>]
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;ems_cluster&#39;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">dump_ems_cluster</span>()
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;ext_management_system&#39;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">dump_ext_management_system</span>()
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;host&#39;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">dump_host</span>()
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;service&#39;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">dump_service</span>()
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;service_template&#39;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">dump_service_template</span>()
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;storage&#39;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">dump_storage</span>()
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;vm&#39;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">dump_vm</span>()
+  <span class="ruby-keyword">end</span>
+  
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Inspector.html#method-i-inspectMe">inspectMe</a>
+        </div>
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

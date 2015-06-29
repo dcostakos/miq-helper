@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module MiqHlp::ObjectWalker - RDoc Documentation</title>
+
+<link href="../fonts.css" rel="stylesheet">
+<link href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/navigation.js"></script>
+<script src="../js/search_index.js"></script>
+<script src="../js/search.js"></script>
+<script src="../js/searcher.js"></script>
+<script src="../js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-dump_association">#dump_association</a>
+    
+    <li ><a href="#method-i-dump_associations">#dump_associations</a>
+    
+    <li ><a href="#method-i-dump_attributes">#dump_attributes</a>
+    
+    <li ><a href="#method-i-dump_methods">#dump_methods</a>
+    
+    <li ><a href="#method-i-dump_object">#dump_object</a>
+    
+    <li ><a href="#method-i-dump_virtual_columns">#dump_virtual_columns</a>
+    
+    <li ><a href="#method-i-is_plural-3F">#is_plural?</a>
+    
+    <li ><a href="#method-i-type">#type</a>
+    
+    <li ><a href="#method-i-walk_object">#walk_object</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-MiqHlp::ObjectWalker">
+  <h1 id="module-MiqHlp::ObjectWalker" class="module">
+    module MiqHlp::ObjectWalker
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="MAX_RECURSION_LEVEL">MAX_RECURSION_LEVEL
+        
+        <dd><p>Change <a
+href="ObjectWalker.html#MAX_RECURSION_LEVEL">MAX_RECURSION_LEVEL</a> to
+adjust the depth of recursion that objectWalker traverses through the
+objects</p>
+        
+      
+        <dt id="VERSION">VERSION
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-dump_association" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_association</span><span
+            class="method-args">(object_string, association, associated_objects, indent_string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_association-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/objectwalker.rb, line 211</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_association</span>(<span class="ruby-identifier">object_string</span>, <span class="ruby-identifier">association</span>, <span class="ruby-identifier">associated_objects</span>, <span class="ruby-identifier">indent_string</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment"># Assemble some fake code to make it look like we&#39;re iterating though associations (plural)</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-identifier">number_of_associated_objects</span> = <span class="ruby-identifier">associated_objects</span>.<span class="ruby-identifier">length</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">is_plural?</span>(<span class="ruby-identifier">association</span>)
+      <span class="ruby-identifier">assignment_string</span> = <span class="ruby-node">&quot;#{object_string}.#{association}.each do |#{association.singularize}|&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">assignment_string</span> = <span class="ruby-node">&quot;#{association} = #{object_string}.#{association}&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   #{assignment_string}&quot;</span>)
+    <span class="ruby-identifier">associated_objects</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">associated_object</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">associated_object_class</span> = <span class="ruby-node">&quot;#{associated_object.method_missing(:class)}&quot;</span>.<span class="ruby-identifier">demodulize</span>
+      <span class="ruby-identifier">associated_object_id</span> = <span class="ruby-identifier">associated_object</span>.<span class="ruby-identifier">id</span> <span class="ruby-keyword">rescue</span> <span class="ruby-identifier">associated_object</span>.<span class="ruby-identifier">object_id</span>
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}|    #{@method}:   (object type: #{associated_object_class}, object ID: #{associated_object_id})&quot;</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">is_plural?</span>(<span class="ruby-identifier">association</span>)
+        <span class="ruby-identifier">dump_object</span>(<span class="ruby-node">&quot;#{association.singularize}&quot;</span>, <span class="ruby-identifier">associated_object</span>, <span class="ruby-identifier">indent_string</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">number_of_associated_objects</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+          <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   --- next #{association.singularize} ---&quot;</span>)
+          <span class="ruby-identifier">number_of_associated_objects</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   --- end of #{object_string}.#{association}.each do |#{association.singularize}| ---&quot;</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">dump_object</span>(<span class="ruby-node">&quot;#{association}&quot;</span>, <span class="ruby-identifier">associated_object</span>, <span class="ruby-identifier">indent_string</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;#{@method} (dump_association) - [#{err}]\n#{err.backtrace.join(&quot;\n&quot;)}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_associations" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_associations</span><span
+            class="method-args">(object_string, this_object, this_object_class, indent_string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_associations-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/objectwalker.rb, line 258</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_associations</span>(<span class="ruby-identifier">object_string</span>, <span class="ruby-identifier">this_object</span>, <span class="ruby-identifier">this_object_class</span>, <span class="ruby-identifier">indent_string</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment"># Print the associations of this object according to the @walk_associations_whitelist &amp; @walk_associations_blacklist hashes</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-identifier">object_associations</span> = []
+    <span class="ruby-identifier">associated_objects</span> = []
+    <span class="ruby-identifier">duplicates</span> = []
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:associations</span>)
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   --- associations follow ---&quot;</span>)
+      <span class="ruby-identifier">object_associations</span> = <span class="ruby-constant">Array</span>(<span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">associations</span>)
+      <span class="ruby-identifier">duplicates</span> = <span class="ruby-identifier">object_associations</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span> <span class="ruby-identifier">object_associations</span>.<span class="ruby-identifier">count</span>(<span class="ruby-identifier">item</span>) <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>}
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">duplicates</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   *** De-duplicating the following associations: #{duplicates.inspect} (product bug?) ***&quot;</span>)
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">object_associations</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">association</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">begin</span>
+          <span class="ruby-identifier">associated_objects</span> = <span class="ruby-constant">Array</span>(<span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">association</span>))
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">associated_objects</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+            <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   #{object_string}.#{association} (type: Association (empty))&quot;</span>)
+          <span class="ruby-keyword">else</span>
+            <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   #{object_string}.#{association} (type: Association)&quot;</span>)
+            <span class="ruby-comment">#</span>
+            <span class="ruby-comment"># See if we need to walk this association according to the @walk_association_policy variable, and the @walk_association_{whitelist,blacklist} hashes</span>
+            <span class="ruby-comment">#</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-ivar">@walk_association_policy</span> <span class="ruby-operator">==</span> <span class="ruby-value">:whitelist</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-ivar">@walk_association_whitelist</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">this_object_class</span>) <span class="ruby-operator">&amp;&amp;</span>
+                  (<span class="ruby-ivar">@walk_association_whitelist</span>[<span class="ruby-identifier">this_object_class</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value">:ALL</span>) <span class="ruby-operator">||</span> <span class="ruby-ivar">@walk_association_whitelist</span>[<span class="ruby-identifier">this_object_class</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">association</span>.<span class="ruby-identifier">to_s</span>))
+                <span class="ruby-identifier">dump_association</span>(<span class="ruby-identifier">object_string</span>, <span class="ruby-identifier">association</span>, <span class="ruby-identifier">associated_objects</span>, <span class="ruby-identifier">indent_string</span>)
+              <span class="ruby-keyword">else</span>
+                <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   *** not walking: \&#39;#{association}\&#39; isn&#39;t in the @walk_association_whitelist hash for #{this_object_class} ***&quot;</span>)
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@walk_association_policy</span> <span class="ruby-operator">==</span> <span class="ruby-value">:blacklist</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-ivar">@walk_association_blacklist</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">this_object_class</span>) <span class="ruby-operator">&amp;&amp;</span>
+                  (<span class="ruby-ivar">@walk_association_blacklist</span>[<span class="ruby-identifier">this_object_class</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value">:ALL</span>) <span class="ruby-operator">||</span> <span class="ruby-ivar">@walk_association_blacklist</span>[<span class="ruby-identifier">this_object_class</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">association</span>.<span class="ruby-identifier">to_s</span>))
+                <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   *** not walking: \&#39;#{association}\&#39; is in the @walk_association_blacklist hash for #{this_object_class} ***&quot;</span>)
+              <span class="ruby-keyword">else</span>
+                <span class="ruby-identifier">dump_association</span>(<span class="ruby-identifier">object_string</span>, <span class="ruby-identifier">association</span>, <span class="ruby-identifier">associated_objects</span>, <span class="ruby-identifier">indent_string</span>)
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">else</span>
+              <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   *** Invalid @walk_association_policy: #{@walk_association_policy} ***&quot;</span>)
+              <span class="ruby-keyword">return</span>
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">rescue</span> <span class="ruby-constant">NoMethodError</span>
+          <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   *** #{this_object_class} association: \&#39;#{association}\&#39;, gives a NoMethodError when accessed (product bug?) ***&quot;</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   --- end of associations ---&quot;</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   #{object_string} has no associations&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;#{@method} (dump_associations) - [#{err}]\n#{err.backtrace.join(&quot;\n&quot;)}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_attributes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_attributes</span><span
+            class="method-args">(object_string, this_object, indent_string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_attributes-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/objectwalker.rb, line 105</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-identifier">object_string</span>, <span class="ruby-identifier">this_object</span>, <span class="ruby-identifier">indent_string</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment"># Print the attributes of this object</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:attributes</span>)
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   Debug: this_object.inspected = #{this_object.inspect}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@debug</span>
+      <span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;options&quot;</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">DRb</span><span class="ruby-operator">::</span><span class="ruby-constant">DRbObject</span>)
+            <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   #{object_string}[\&#39;#{key}\&#39;] =&gt; #{value}   #{type(value)}&quot;</span>)
+            <span class="ruby-identifier">dump_object</span>(<span class="ruby-node">&quot;#{object_string}[\&#39;#{key}\&#39;]&quot;</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">indent_string</span>)
+          <span class="ruby-keyword">else</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span>
+              <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   #{object_string}.#{key} = nil&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@print_nil_values</span>
+            <span class="ruby-keyword">else</span>
+              <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   #{object_string}.#{key} = #{value}   #{type(value)}&quot;</span>)
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">value</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">nil?</span>
+              <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   #{object_string}.options[:#{k}] = nil&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@print_nil_values</span>
+            <span class="ruby-keyword">else</span>
+              <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   #{object_string}.options[:#{k}] = #{v}   #{type(v)}&quot;</span>)
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   #{object_string} has no attributes&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;#{@method} (dump_attributes) - [#{err}]\n#{err.backtrace.join(&quot;\n&quot;)}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_methods" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_methods</span><span
+            class="method-args">(object_string, this_object, indent_string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_methods-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/objectwalker.rb, line 328</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_methods</span>(<span class="ruby-identifier">object_string</span>, <span class="ruby-identifier">this_object</span>, <span class="ruby-identifier">indent_string</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">object_string</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;$evm.root&quot;</span>
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   Class of remote DRb::DRbObject is: #{this_object.method_missing(:class)}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@debug</span>
+      <span class="ruby-comment">#</span>
+      <span class="ruby-comment"># Get the instance methods of the class and convert to string</span>
+      <span class="ruby-comment">#</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">method_missing</span>(<span class="ruby-value">:class</span>).<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:instance_methods</span>)
+        <span class="ruby-identifier">instance_methods</span> = <span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">method_missing</span>(<span class="ruby-value">:class</span>).<span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_s</span> }
+        <span class="ruby-comment">#</span>
+        <span class="ruby-comment"># Now we need to remove method names that we&#39;re not interested in...</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-comment"># ...attribute names...</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-identifier">attributes</span> = []
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:attributes</span>)
+          <span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">attributes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">key</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">attributes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;attributes&quot;</span>
+        <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Removing attributes: #{instance_methods &amp; attributes}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@debug</span>
+        <span class="ruby-identifier">instance_methods</span> = <span class="ruby-identifier">instance_methods</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">attributes</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-comment"># ...association names...</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-identifier">associations</span> = []
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:associations</span>)
+          <span class="ruby-identifier">associations</span> = <span class="ruby-constant">Array</span>(<span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">associations</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">associations</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;associations&quot;</span>
+        <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Removing associations: #{instance_methods &amp; associations}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@debug</span>
+        <span class="ruby-identifier">instance_methods</span> = <span class="ruby-identifier">instance_methods</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">associations</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-comment"># ...virtual column names...</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-identifier">virtual_column_names</span> = []
+        <span class="ruby-identifier">virtual_column_names</span> = <span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">method_missing</span>(<span class="ruby-value">:virtual_column_names</span>)
+        <span class="ruby-identifier">virtual_column_names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;virtual_column_names&quot;</span>
+        <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Removing virtual_column_names: #{instance_methods &amp; virtual_column_names}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@debug</span>
+        <span class="ruby-identifier">instance_methods</span> = <span class="ruby-identifier">instance_methods</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">virtual_column_names</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-comment"># ... MiqAeServiceModelBase methods ...</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;Removing MiqAeServiceModelBase methods: #{instance_methods &amp; @service_mode_base_instance_methods}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@debug</span>
+        <span class="ruby-identifier">instance_methods</span> = <span class="ruby-identifier">instance_methods</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@service_mode_base_instance_methods</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-comment"># and finally dump out the remainder</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   --- methods follow ---&quot;</span>)
+        <span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">instance_method</span> <span class="ruby-operator">|</span>
+          <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   #{object_string}.#{instance_method}&quot;</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   --- end of methods ---&quot;</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   #{object_string} has no instance methods&quot;</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;#{@method} (dump_methods) - [#{err}]\n#{err.backtrace.join(&quot;\n&quot;)}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_object" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_object</span><span
+            class="method-args">(object_string, this_object, indent_string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_object-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/objectwalker.rb, line 403</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_object</span>(<span class="ruby-identifier">object_string</span>, <span class="ruby-identifier">this_object</span>, <span class="ruby-identifier">indent_string</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@recursion_level</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">indent_string</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&quot;     &quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">indent_string</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&quot;|    &quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment"># Make sure that we don&#39;t exceed our maximum recursion level</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-ivar">@recursion_level</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@recursion_level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">MAX_RECURSION_LEVEL</span>
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   *** exceeded maximum recursion level ***&quot;</span>)
+      <span class="ruby-ivar">@recursion_level</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword">return</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment"># Make sure we haven&#39;t dumped this object already (some data structure links are cyclical)</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-identifier">this_object_id</span> = <span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">rescue</span> <span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">object_id</span>.<span class="ruby-identifier">to_s</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   Debug: this_object.method_missing(:class) = #{this_object.method_missing(:class)}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@debug</span>
+    <span class="ruby-identifier">this_object_class</span> = <span class="ruby-node">&quot;#{this_object.method_missing(:class)}&quot;</span>.<span class="ruby-identifier">demodulize</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   Debug: this_object_class = #{this_object_class}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@debug</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@object_recorder</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">this_object_class</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@object_recorder</span>[<span class="ruby-identifier">this_object_class</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">this_object_id</span>)
+        <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   Object #{this_object_class} with ID #{this_object_id} has already been dumped...&quot;</span>)
+        <span class="ruby-ivar">@recursion_level</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+        <span class="ruby-keyword">return</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@object_recorder</span>[<span class="ruby-identifier">this_object_class</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">this_object_id</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@object_recorder</span>[<span class="ruby-identifier">this_object_class</span>] = []
+      <span class="ruby-ivar">@object_recorder</span>[<span class="ruby-identifier">this_object_class</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">this_object_id</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment">#log(:info, &quot;#{indent_string}#{@method}:   Dumping $evm.root&quot;) if @recursion_level == 1</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment"># Dump out the things of interest</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-identifier">dump_attributes</span>(<span class="ruby-identifier">object_string</span>, <span class="ruby-identifier">this_object</span>, <span class="ruby-identifier">indent_string</span>)
+    <span class="ruby-identifier">dump_virtual_columns</span>(<span class="ruby-identifier">object_string</span>, <span class="ruby-identifier">this_object</span>, <span class="ruby-identifier">this_object_class</span>, <span class="ruby-identifier">indent_string</span>)
+    <span class="ruby-identifier">dump_associations</span>(<span class="ruby-identifier">object_string</span>, <span class="ruby-identifier">this_object</span>, <span class="ruby-identifier">this_object_class</span>, <span class="ruby-identifier">indent_string</span>)
+    <span class="ruby-identifier">dump_methods</span>(<span class="ruby-identifier">object_string</span>, <span class="ruby-identifier">this_object</span>, <span class="ruby-identifier">indent_string</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@dump_methods</span>
+
+    <span class="ruby-ivar">@recursion_level</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;#{@method} (dump_object) - [#{err}]\n#{err.backtrace.join(&quot;\n&quot;)}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump_virtual_columns" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_virtual_columns</span><span
+            class="method-args">(object_string, this_object, this_object_class, indent_string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_virtual_columns-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/objectwalker.rb, line 156</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump_virtual_columns</span>(<span class="ruby-identifier">object_string</span>, <span class="ruby-identifier">this_object</span>, <span class="ruby-identifier">this_object_class</span>, <span class="ruby-identifier">indent_string</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment"># Print the virtual columns of this object</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:virtual_column_names</span>)
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   --- virtual columns follow ---&quot;</span>)
+      <span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">virtual_column_names</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">virtual_column_name</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">begin</span>
+          <span class="ruby-identifier">virtual_column_value</span> = <span class="ruby-identifier">this_object</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">virtual_column_name</span>)
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">virtual_column_value</span>.<span class="ruby-identifier">nil?</span>
+            <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   #{object_string}.#{virtual_column_name} = nil&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@print_nil_values</span>
+          <span class="ruby-keyword">else</span>
+            <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   #{object_string}.#{virtual_column_name} = #{virtual_column_value}   #{type(virtual_column_value)}&quot;</span>)
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">rescue</span> <span class="ruby-constant">NoMethodError</span>
+          <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   *** #{this_object_class} virtual column: \&#39;#{virtual_column_name}\&#39; gives a NoMethodError when accessed (product bug?) ***&quot;</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   --- end of virtual columns ---&quot;</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{indent_string}#{@method}:   #{object_string} has no virtual columns&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
+    <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;#{@method} (dump_virtual_columns) - [#{err}]\n#{err.backtrace.join(&quot;\n&quot;)}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-is_plural-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_plural?</span><span
+            class="method-args">(astring)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_plural-3F-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/objectwalker.rb, line 194</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_plural?</span>(<span class="ruby-identifier">astring</span>)
+  <span class="ruby-identifier">astring</span>.<span class="ruby-identifier">singularize</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">astring</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-type" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">type</span><span
+            class="method-args">(object)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="type-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/objectwalker.rb, line 84</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">type</span>(<span class="ruby-identifier">object</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">DRb</span><span class="ruby-operator">::</span><span class="ruby-constant">DRbObject</span>)
+    <span class="ruby-identifier">string</span> = <span class="ruby-node">&quot;(type: #{object.class}, URI: #{object.__drburi()})&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">string</span> = <span class="ruby-node">&quot;(type: #{object.class})&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">string</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-walk_object" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">walk_object</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Main method</p>
+          
+          
+
+          
+          <div class="method-source-code" id="walk_object-source">
+            <pre><span class="ruby-comment"># File lib/miq-helper/objectwalker.rb, line 455</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">walk_object</span>()
+
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{@method} #{VERSION} - EVM Automate Method Started&quot;</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@dump_methods</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-comment"># If we&#39;re dumping object methods, then we need to find out the methods of the MiqAeMethodService::MiqAeServiceModelBase class</span>
+    <span class="ruby-comment"># so that we can subtract them from the method list returned from each object. We know that MiqAeServiceModelBase is the superclass</span>
+    <span class="ruby-comment"># of MiqAeMethodService::MiqAeServiceUser, so we can get what we&#39;re after via $evm.root[&#39;user&#39;]</span>
+    <span class="ruby-comment">#</span>
+    <span class="ruby-identifier">user</span> = <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>[<span class="ruby-string">&#39;user&#39;</span>] <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">method_missing</span>(<span class="ruby-value">:class</span>).<span class="ruby-identifier">superclass</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;MiqAeMethodService::MiqAeServiceModelBase&quot;</span>
+        <span class="ruby-ivar">@service_mode_base_instance_methods</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">method_missing</span>(<span class="ruby-value">:class</span>).<span class="ruby-identifier">superclass</span>.<span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">to_s</span> }
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;#{@method} Unexpected parent class of $evm.root[&#39;user&#39;]: #{user.method_missing(:class).superclass.name}&quot;</span>)
+        <span class="ruby-ivar">@dump_methods</span> = <span class="ruby-keyword">false</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">log</span>(<span class="ruby-value">:error</span>, <span class="ruby-node">&quot;#{@method} $evm.root[&#39;user&#39;] doesn&#39;t exist&quot;</span>)
+      <span class="ruby-ivar">@dump_methods</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment"># Start with a few $evm attributes </span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;     #{@method}:   $evm.current_namespace = #{$evm.current_namespace}   #{type($evm.current_namespace)}&quot;</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;     #{@method}:   $evm.current_class = #{$evm.current_class}   #{type($evm.current_class)}&quot;</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;     #{@method}:   $evm.current_instance = #{$evm.current_instance}   #{type($evm.current_instance)}&quot;</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;     #{@method}:   $evm.current_message = #{$evm.current_message}   #{type($evm.current_message)}&quot;</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;     #{@method}:   $evm.current_object = #{$evm.current_object}   #{type($evm.current_object)}&quot;</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;     #{@method}:   $evm.current_object.current_field_name = #{$evm.current_object.current_field_name}   #{type($evm.current_object.current_field_name)}&quot;</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;     #{@method}:   $evm.current_object.current_field_type = #{$evm.current_object.current_field_type}   #{type($evm.current_object.current_field_type)}&quot;</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;     #{@method}:   $evm.current_method = #{$evm.current_method}   #{type($evm.current_method)}&quot;</span>)
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;     #{@method}:   $evm.root = #{$evm.root}   #{type($evm.root)}&quot;</span>)
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment"># and now dump $evm.root...  </span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-identifier">dump_object</span>(<span class="ruby-string">&quot;$evm.root&quot;</span>, <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">root</span>, <span class="ruby-string">&quot;&quot;</span>)
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment"># and finally our parent object...</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;     #{@method}:   $evm.parent = #{$evm.parent}   #{type($evm.parent)}&quot;</span>)
+  <span class="ruby-identifier">dump_object</span>(<span class="ruby-string">&quot;$evm.parent&quot;</span>, <span class="ruby-identifier">$evm</span>.<span class="ruby-identifier">parent</span>, <span class="ruby-string">&quot;&quot;</span>)
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment"># Exit method</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-identifier">log</span>(<span class="ruby-value">:info</span>, <span class="ruby-node">&quot;#{@method} - EVM Automate Method Ended&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
